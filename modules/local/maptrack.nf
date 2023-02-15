@@ -1,25 +1,21 @@
 process MAPTRACK {
-    tag "$meta.id"
     label 'process_high'
 
     container 'sviatsidorov/uniqmaptrack:1.1'
 
     input:
-    tuple val(meta), path(bam)
+    tuple path(fai), path(fasta)
 
     output:
-    tuple val(meta), path("*.bam"), emit: bam
+    path "t2t-chm13-v1.1.fa.sa", emit: sa
+    path "t2t-chm13-v1.1.fa.gz.gzi", emit: gzi
+    path "t2t-chm13-v1.1.fa.refrev", emit: refrev
+    path "t2t-chm13-v1.1.fa.mul.wig", emit: mul
+    path "t2t-chm13-v1.1.fa.mur.wig", emit: mur
     path "versions.yml"           , emit: versions
-
-    when:
-    task.ext.when == null || task.ext.when
-
-    script:
-    def args = task.ext.args ?: ''
-    def prefix = task.ext.prefix ?: "${meta.id}"
     
     """
-    ./bin/minUniqueKmer/find_minUniqueKmer.sh t2t-chm13-v1.1.fa 10
+    ./bin/minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
