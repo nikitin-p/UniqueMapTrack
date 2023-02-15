@@ -2,10 +2,7 @@ process DOWNLOADGENOME {
     tag "$meta.id"
     label 'process_medium'
 
-    conda "YOUR-TOOL-HERE"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/YOUR-TOOL-HERE':
-        'quay.io/biocontainers/YOUR-TOOL-HERE' }"
+    container 'sviatsidorov/uniqmaptrack:1.1'
 
     input:
     tuple val(meta), path(bam)
@@ -20,19 +17,18 @@ process DOWNLOADGENOME {
     script:
     def args = task.ext.args ?: ''
     def prefix = task.ext.prefix ?: "${meta.id}"
-    
+
     """
-    samtools \\
-        sort \\
-        $args \\
-        -@ $task.cpus \\
-        -o ${prefix}.bam \\
-        -T $prefix \\
-        $bam
+    wget https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/genome/t2t-chm13-v1.1.fa.gz
+    wget https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/genome/t2t-chm13-v1.1.fa.gz.fai
+    wget https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/cenSat/cenSatAnnotation.bigBed
+    bigBedToBed cenSatAnnotation.bigBed cenSatAnnotation.tmp
+    awk 'BEGIN{{ OFS="\t" }}{{ split($4,A,"_"); print $1,$2,$3,A[1] }}' \
+    cenSatAnnotation.tmp > cenSatAnnotation.bed
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        downloadgenome: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//' ))
+        DOWNLOADGENOME: 1.0
     END_VERSIONS
     """
 }

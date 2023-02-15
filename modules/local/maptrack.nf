@@ -2,10 +2,7 @@ process MAPTRACK {
     tag "$meta.id"
     label 'process_high'
 
-    conda "YOUR-TOOL-HERE"
-    container "${ workflow.containerEngine == 'singularity' && !task.ext.singularity_pull_docker_container ?
-        'https://depot.galaxyproject.org/singularity/YOUR-TOOL-HERE':
-        'quay.io/biocontainers/YOUR-TOOL-HERE' }"
+    container 'sviatsidorov/uniqmaptrack:1.1'
 
     input:
     tuple val(meta), path(bam)
@@ -22,17 +19,11 @@ process MAPTRACK {
     def prefix = task.ext.prefix ?: "${meta.id}"
     
     """
-    samtools \\
-        sort \\
-        $args \\
-        -@ $task.cpus \\
-        -o ${prefix}.bam \\
-        -T $prefix \\
-        $bam
+    ./bin/minUniqueKmer/find_minUniqueKmer.sh t2t-chm13-v1.1.fa 10
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        maptrack: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//' ))
+        MAPTRACK: 1.0
     END_VERSIONS
     """
 }

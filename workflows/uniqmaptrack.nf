@@ -1,5 +1,5 @@
-include { FASTQC } from '../modules/nf-core/modules/fastqc/main.nf'
-include { READ_NAMES } from '../modules/local/read_names/main.nf'
+include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
+include { MAPTRACK } from '../modules/local/maptrack.nf'
 
 reads = [
     [
@@ -22,7 +22,7 @@ Channel
     .set{ ch_reads }
 
 workflow NF_EXAMPLE {
-    FASTQC( ch_reads )
+    DOWNLOADGENOME( ch_reads )
 
-    READ_NAMES( ch_reads )
+    MAPTRACK( ch_reads )
 }
