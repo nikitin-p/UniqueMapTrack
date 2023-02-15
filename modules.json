@@ -1,0 +1,11 @@
+{
+    "name": "nextflow-example",
+    "homePage": "https://github.com/marc-jones/nextflow-example",
+    "repos": {
+        "nf-core/modules": {
+            "fastqc": {
+                "git_sha": "9d0cad583b9a71a6509b754fdf589cbfbed08961"
+            }
+        }
+    }
+}
