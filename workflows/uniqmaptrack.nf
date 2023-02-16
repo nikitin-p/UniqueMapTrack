@@ -11,7 +11,7 @@ t2t = [
 ]
 
 workflow UNIQMAPTRACK {
-    DOWNLOADGENOME(  )
+    // DOWNLOADGENOME(  )
 
     MAPTRACK( 
         t2t
