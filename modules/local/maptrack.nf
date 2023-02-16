@@ -14,7 +14,7 @@ process MAPTRACK {
     path "t2t-chm13-v1.1.fa.mur.wig", emit: mur
     path "versions.yml"           , emit: versions
     
-    // ./bin/minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
+    // ./find_minUniqueKmer.sh ${fasta} $task.cpus
 
     """
     ./find_minUniqueKmer.sh ${fasta} $task.cpus
