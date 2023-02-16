@@ -15,9 +15,11 @@ process MAPTRACK {
     path "versions.yml"           , emit: versions
     
     // ./find_minUniqueKmer.sh ${fasta} $task.cpus
-
+    // ./find_minUniqueKmer.sh ${fasta} $task.cpus
+    // /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
+    
     """
-    /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
+    ./find_minUniqueKmer.sh
     
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
