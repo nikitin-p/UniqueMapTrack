@@ -1,4 +1,4 @@
-include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
+//include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
 include { MAPTRACK } from '../modules/local/maptrack.nf'
 
 // t2t = [
@@ -10,11 +10,20 @@ include { MAPTRACK } from '../modules/local/maptrack.nf'
 //     ]
 // ]
 
+t2t = [
+    [
+        "/camp/home/sidoros/sidoros/projects/uniqmaptrack/results/genome/t2t-chm13-v1.1.fa.fai"
+    ],
+    [
+        "/camp/home/sidoros/sidoros/projects/uniqmaptrack/results/genome/t2t-chm13-v1.1.fa"
+    ]
+]
+
 workflow UNIQMAPTRACK {
-    DOWNLOADGENOME (  )
+    //DOWNLOADGENOME (  )
 
     MAPTRACK ( 
-        //t2t
-        DOWNLOADGENOME.out.t2t 
+        t2t
+        //DOWNLOADGENOME.out.t2t 
     )
 }
