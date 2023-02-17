@@ -19,7 +19,7 @@ process MAPTRACK {
     // /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
     
     """
-    /minUniqueKmer/find_minUniqueKmer.sh 
+    /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
     
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
