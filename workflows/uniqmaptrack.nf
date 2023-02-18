@@ -1,29 +1,22 @@
-//include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
+include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
 include { MAPTRACK } from '../modules/local/maptrack.nf'
+
+// Uncomment the code below if you have already downloaded genome
 
 // t2t = [
 //     [
-//         "/home/nikitinp/hooman/results/genome/t2t-chm13-v1.1.fa.fai"
+//         "your_path.fa.fai"
 //     ],
 //     [
-//         "/home/nikitinp/hooman/results/genome/t2t-chm13-v1.1.fa"
+//         "your_path.fa"
 //     ]
 // ]
 
-t2t = [
-    [
-        "/camp/home/sidoros/sidoros/projects/uniqmaptrack/results/genome/t2t-chm13-v1.1.fa.fai"
-    ],
-    [
-        "/camp/home/sidoros/sidoros/projects/uniqmaptrack/results/genome/t2t-chm13-v1.1.fa"
-    ]
-]
-
 workflow UNIQMAPTRACK {
-    //DOWNLOADGENOME (  )
+    DOWNLOADGENOME (  )
 
     MAPTRACK ( 
-        t2t
-        //DOWNLOADGENOME.out.t2t 
+        // t2t
+        DOWNLOADGENOME.out.t2t 
     )
 }
