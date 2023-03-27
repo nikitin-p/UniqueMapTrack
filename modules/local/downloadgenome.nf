@@ -4,7 +4,7 @@ process DOWNLOADGENOME {
     container 'sviatsidorov/uniqmaptrack:1.1'
 
     output:
-    tuple path("t2t-chm13-v1.1.fa.fai"), path("t2t-chm13-v1.1.fa"), emit: t2t
+    tuple path("t2t-chm13-v1.1.fa"), path("t2t-chm13-v1.1.fa.fai"), emit: t2t
     path "versions.yml", emit: versions
 
     """

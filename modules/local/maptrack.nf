@@ -4,11 +4,11 @@ process MAPTRACK {
     container 'sviatsidorov/uniqmaptrack:1.1'
 
     input:
-    tuple path(fai), path(fasta)
+    tuple path(fasta), path(fai)
 
     output:
     path "t2t-chm13-v1.1.fa.sa"     , emit: sa
-    path "t2t-chm13-v1.1.fa.gz.gzi" , emit: gzi
+    // path "t2t-chm13-v1.1.fa.gz.gzi" , emit: gzi
     path "t2t-chm13-v1.1.fa.refrev" , emit: refrev
     path "t2t-chm13-v1.1.fa.mul.wig", emit: mul
     path "t2t-chm13-v1.1.fa.mur.wig", emit: mur
