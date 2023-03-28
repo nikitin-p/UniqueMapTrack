@@ -21,9 +21,9 @@ workflow UNIQMAPTRACK {
     MAPTRACK ( 
         // t2t
         // DOWNLOADGENOME.out.t2t 
-        DOWNLOADMOREGENOMES.out.e_coli
-        DOWNLOADMOREGENOMES.out.human_mitochondrion
-        DOWNLOADMOREGENOMES.out.orzyza_sativa_chloroplast
-        DOWNLOADMOREGENOMES.out.sars_cov2
+        DOWNLOADMOREGENOMES.out.ecoli
+        DOWNLOADMOREGENOMES.out.hm
+        DOWNLOADMOREGENOMES.out.osc
+        DOWNLOADMOREGENOMES.out.sc2
     )
 }

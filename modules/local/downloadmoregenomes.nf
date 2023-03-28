@@ -6,10 +6,10 @@ process DOWNLOADMOREGENOMES {
         'quay.io/biocontainers/samtools:1.16.1--h6899075_1' }"
 
     output:
-    tuple path("e_coli.fa"), path("e_coli.fa.fai"), emit: e_coli
-    tuple path("human_mitochondrion.fa"), path("human_mitochondrion.fa.fai"), emit: human_mitochondrion
-    tuple path("orzyza_sativa_chloroplast.fa"), path("orzyza_sativa_chloroplast.fa.fai"), emit: orzyza_sativa_chloroplast
-    tuple path("sars_cov2.fa"), path("sars_cov2.fa.fai"), emit: sars_cov2
+    tuple path("e_coli.fa"), path("e_coli.fa.fai"), emit: ecoli
+    tuple path("human_mitochondrion.fa"), path("human_mitochondrion.fa.fai"), emit: hm
+    tuple path("orzyza_sativa_chloroplast.fa"), path("orzyza_sativa_chloroplast.fa.fai"), emit: osc
+    tuple path("sars_cov2.fa"), path("sars_cov2.fa.fai"), emit: sc2
     path "versions.yml"           , emit: versions
 
     script:
