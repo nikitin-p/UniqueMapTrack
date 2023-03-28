@@ -13,10 +13,10 @@ include { MAPTRACK } from '../modules/local/maptrack.nf'
 // ]
 
 workflow UNIQMAPTRACK {
-    DOWNLOADGENOME (  )
+    // DOWNLOADGENOME (  )
 
     MAPTRACK ( 
         // t2t
-        DOWNLOADGENOME.out.t2t 
+        // DOWNLOADGENOME.out.t2t 
     )
 }

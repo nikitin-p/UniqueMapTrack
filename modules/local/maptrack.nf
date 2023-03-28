@@ -15,11 +15,14 @@ process MAPTRACK {
     path "versions.yml"             , emit: versions
     
     """
-    /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
+    # /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
+    echo 'hello'
     
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        minUniqueKmer: \$(/minUniqueKmer/bin/minUniqueKmer | head -1 | sed 's/^.*ver\. //')
+        minUniqueKmer: \$(/minUniqueKmer/bin/minUniqueKmer | head -1)
     END_VERSIONS
     """
 }
+
+// minUniqueKmer: \$(/minUniqueKmer/bin/minUniqueKmer | head -1 | sed 's/^.*ver\. //')
