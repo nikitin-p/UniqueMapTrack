@@ -1,5 +1,5 @@
-include { DOWNLOADMOREGENOMES } from '../modules/local/downloadmoregenomes.nf'
-include { MAPTRACKADD } from '../modules/local/maptrackadd.nf'
+// include { DOWNLOADMOREGENOMES } from '../modules/local/downloadmoregenomes.nf'
+// include { MAPTRACKADD } from '../modules/local/maptrackadd.nf'
 include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
 include { MAPTRACK } from '../modules/local/maptrack.nf'
 
@@ -16,24 +16,24 @@ include { MAPTRACK } from '../modules/local/maptrack.nf'
 
 workflow UNIQMAPTRACK {
 
-    // Comment the code below if you wish to analyze only T2T-CHM13
+    // E. coli, mitochondrion, chloroplast and coronavirus modules
 
-    DOWNLOADMOREGENOMES (  ) 
+    // DOWNLOADMOREGENOMES (  ) 
 
-    MAPTRACKADD ( 
-        DOWNLOADMOREGENOMES.out.ecoli,
-        DOWNLOADMOREGENOMES.out.hm,
-        DOWNLOADMOREGENOMES.out.osc,
-        DOWNLOADMOREGENOMES.out.sc2
-    )
+    // MAPTRACKADD ( 
+    //     DOWNLOADMOREGENOMES.out.ecoli,
+    //     DOWNLOADMOREGENOMES.out.hm,
+    //     DOWNLOADMOREGENOMES.out.osc,
+    //     DOWNLOADMOREGENOMES.out.sc2
+    // )
 
     // T2T-CHM13 modules
 
-    // DOWNLOADGENOME (  )
+    DOWNLOADGENOME (  )
 
-    // MAPTRACK ( 
-    //     // t2t
-    //     DOWNLOADGENOME.out.t2t 
-    // )
+    MAPTRACK ( 
+        // t2t
+        DOWNLOADGENOME.out.t2t 
+    )
 
 }
