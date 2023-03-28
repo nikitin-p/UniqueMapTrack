@@ -15,7 +15,6 @@ process MAPTRACK {
     path "versions.yml"             , emit: versions
     
     """
-    # /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
     echo 'hello'
     
     cat <<-END_VERSIONS > versions.yml
@@ -26,3 +25,4 @@ process MAPTRACK {
 }
 
 // minUniqueKmer: \$(/minUniqueKmer/bin/minUniqueKmer | head -1 | sed 's/^.*ver\. //')
+// /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
