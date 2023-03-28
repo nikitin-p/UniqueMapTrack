@@ -1,5 +1,6 @@
-include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
-include { MAPTRACK } from '../modules/local/maptrack.nf'
+// include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
+include { DOWNLOADMOREGENOMES } from '../modules/local/downloadmoregenome.nf'
+// include { MAPTRACK } from '../modules/local/maptrack.nf'
 
 // Uncomment the code below if you have already downloaded genome
 
@@ -13,10 +14,12 @@ include { MAPTRACK } from '../modules/local/maptrack.nf'
 // ]
 
 workflow UNIQMAPTRACK {
-    DOWNLOADGENOME (  )
+    // DOWNLOADGENOME (  )
 
-    MAPTRACK ( 
-        // t2t
-        DOWNLOADGENOME.out.t2t 
-    )
+    DOWNLOADMOREGENOMES (  )
+
+    // MAPTRACK ( 
+    //     // t2t
+    //     DOWNLOADGENOME.out.t2t 
+    // )
 }
