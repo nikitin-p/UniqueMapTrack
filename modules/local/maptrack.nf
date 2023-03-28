@@ -19,7 +19,7 @@ process MAPTRACK {
     
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        minUniqueKmer: \$(/minUniqueKmer/bin/minUniqueKmer | head -1)
+        minUniqueKmer: \$(/minUniqueKmer/bin/minUniqueKmer | head -1 | cut -d" " -f7)
     END_VERSIONS
     """
 }
