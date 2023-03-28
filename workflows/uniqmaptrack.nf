@@ -21,9 +21,13 @@ workflow UNIQMAPTRACK {
     MAPTRACK ( 
         // t2t
         // DOWNLOADGENOME.out.t2t 
-        DOWNLOADMOREGENOMES.out.ecoli,
-        DOWNLOADMOREGENOMES.out.hm,
-        DOWNLOADMOREGENOMES.out.osc,
-        DOWNLOADMOREGENOMES.out.sc2
+        DOWNLOADMOREGENOMES.out.ecoli
+        // DOWNLOADMOREGENOMES.out.hm,
+        // DOWNLOADMOREGENOMES.out.osc,
+        // DOWNLOADMOREGENOMES.out.sc2
+    )
+
+    MAPTRACK ( 
+        DOWNLOADMOREGENOMES.out.hm
     )
 }
