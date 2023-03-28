@@ -42,7 +42,7 @@ process DOWNLOADMOREGENOMES {
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
-        wget: \$(wget --version | head -1)
+        wget: \$(wget 2>&1 | head -1 | cut -d" " -f1,2)
         samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
     END_VERSIONS
     """
