@@ -1,7 +1,7 @@
-include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
-include { MAPTRACK } from '../modules/local/maptrack.nf'
 include { DOWNLOADMOREGENOMES } from '../modules/local/downloadmoregenomes.nf'
 include { MAPTRACKADD } from '../modules/local/maptrackadd.nf'
+include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
+include { MAPTRACK } from '../modules/local/maptrack.nf'
 
 // Uncomment the code below if you have already downloaded genome
 
@@ -29,11 +29,11 @@ workflow UNIQMAPTRACK {
 
     // T2T-CHM13 modules
 
-    DOWNLOADGENOME (  )
+    // DOWNLOADGENOME (  )
 
-    MAPTRACK ( 
-        // t2t
-        DOWNLOADGENOME.out.t2t 
-    )
+    // MAPTRACK ( 
+    //     // t2t
+    //     DOWNLOADGENOME.out.t2t 
+    // )
 
 }
