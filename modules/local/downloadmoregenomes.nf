@@ -16,11 +16,6 @@ process DOWNLOADMOREGENOMES {
     script:
     
     """
-    samtools \\
-        faidx \\
-        chr9.fna \\
-        -o chr9.fai
-
     wget "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=NC_000913.3&rettype=fasta" -O e_coli.fa
     wget "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=NC_012920.1&rettype=fasta" -O human_mitochondrion.fa
     wget "http://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nucleotide&id=NC_001320.1&rettype=fasta" -O orzyza_sativa_chloroplast.fa
