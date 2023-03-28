@@ -17,14 +17,14 @@ include { MAPTRACKADD } from '../modules/local/maptrackadd.nf'
 workflow UNIQMAPTRACK {
     DOWNLOADGENOME (  )
 
+    DOWNLOADMOREGENOMES (  )
+
     MAPTRACK ( 
         // t2t
         DOWNLOADGENOME.out.t2t 
     )
 
     // Comment the code below if you wish to analyze only T2T-CHM13
-
-    DOWNLOADMOREGENOMES (  )
 
     MAPTRACKADD ( 
         DOWNLOADMOREGENOMES.out.ecoli,
