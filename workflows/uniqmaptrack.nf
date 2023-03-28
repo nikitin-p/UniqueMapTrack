@@ -1,6 +1,6 @@
 include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
-include { DOWNLOADMOREGENOMES } from '../modules/local/downloadmoregenomes.nf'
 include { MAPTRACK } from '../modules/local/maptrack.nf'
+include { DOWNLOADMOREGENOMES } from '../modules/local/downloadmoregenomes.nf'
 include { MAPTRACKADD } from '../modules/local/maptrackadd.nf'
 
 // Uncomment the code below if you have already downloaded genome
