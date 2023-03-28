@@ -1,4 +1,4 @@
-// include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
+include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
 include { MAPTRACK } from '../modules/local/maptrack.nf'
 
 // Uncomment the code below if you have already downloaded genome
@@ -12,20 +12,11 @@ include { MAPTRACK } from '../modules/local/maptrack.nf'
 //     ]
 // ]
 
-t2t = [
-    [
-        "/home/nikitinp/hooman/results/genome/t2t-chm13-v1.1.fa"
-    ],
-    [
-        "/home/nikitinp/hooman/results/genome/t2t-chm13-v1.1.fa.fai"
-    ]
-]
-
 workflow UNIQMAPTRACK {
-    // DOWNLOADGENOME (  )
+    DOWNLOADGENOME (  )
 
     MAPTRACK ( 
-        t2t
-        // DOWNLOADGENOME.out.t2t 
+        // t2t
+        DOWNLOADGENOME.out.t2t 
     )
 }
