@@ -12,11 +12,20 @@ include { MAPTRACK } from '../modules/local/maptrack.nf'
 //     ]
 // ]
 
+t2t = [
+    [
+        "/home/nikitinp/hooman/results/genome/t2t-chm13-v1.1.fa"
+    ],
+    [
+        "/home/nikitinp/hooman/results/genome/t2t-chm13-v1.1.fa.fai"
+    ]
+]
+
 workflow UNIQMAPTRACK {
     // DOWNLOADGENOME (  )
 
     MAPTRACK ( 
-        // t2t
+        t2t
         // DOWNLOADGENOME.out.t2t 
     )
 }
