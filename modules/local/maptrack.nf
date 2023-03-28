@@ -4,7 +4,8 @@ process MAPTRACK {
     container 'sviatsidorov/uniqmaptrack:1.1'
 
     input:
-    tuple path(fasta), path(fai)
+    tuple path(fasta1), path(fai1)
+    tuple path(fasta2), path(fai2)
 
     output:
     path "*.fa.sa"     , emit: sa
@@ -18,7 +19,8 @@ process MAPTRACK {
     path "versions.yml"             , emit: versions
     
     """
-    /minUniqueKmer/find_minUniqueKmer.sh ${fasta} $task.cpus
+    /minUniqueKmer/find_minUniqueKmer.sh ${fasta1} $task.cpus
+    /minUniqueKmer/find_minUniqueKmer.sh ${fasta2} $task.cpus
     
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
