@@ -8,7 +8,7 @@ process DOWNLOADMOREGENOMES {
     output:
     tuple path("e_coli.fa"), path("e_coli.fa.fai"), emit: ecoli
     tuple path("human_mitochondrion.fa"), path("human_mitochondrion.fa.fai"), emit: hm
-    tuple path("oryza_sativa_chloroplast.fa"), path("orzyza_sativa_chloroplast.fa.fai"), emit: osc
+    tuple path("oryza_sativa_chloroplast.fa"), path("oryza_sativa_chloroplast.fa.fai"), emit: osc
     tuple path("sars_cov2.fa"), path("sars_cov2.fa.fai"), emit: sc2
     path "versions.yml"           , emit: versions
 
@@ -32,7 +32,7 @@ process DOWNLOADMOREGENOMES {
 
     samtools \\
         faidx \\
-        orzyza_sativa_chloroplast.fa \\
+        oryza_sativa_chloroplast.fa \\
         -o oryza_sativa_chloroplast.fa.fai
 
     samtools \\
