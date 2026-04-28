@@ -29,6 +29,14 @@ Provide exactly one of:
 nextflow run main.nf -profile singularity --input samplesheet.csv
 ```
 
+Example `samplesheet.csv`:
+
+```csv
+name,fasta_url
+chm13,https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/genome/t2t-chm13-v1.1.fa.gz
+ecoli,https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
+```
+
 ```bash
 # Single genome shortcut
 nextflow run main.nf -profile singularity \
@@ -45,16 +53,6 @@ All results land in `results/`:
 - `results/genome/{name}/` — downloaded reference FASTA + FAI
 - `results/wig_track/{name}/` — WIG mappability tracks and intermediate files
 - `results/pipeline_info/` — execution timeline, report, trace, DAG
-
-## Resource Labels
-
-| Label | CPUs | Memory | Time |
-| --- | --- | --- | --- |
-| `process_low` | 1 | 4 GB | 4 h |
-| `process_medium` | 4 | 4 GB | 8 h |
-| `process_high` | 8 | 96 GB | 96 h |
-
-`MAPTRACK` uses `process_high`. Executor defaults to `local`; change to `pbs` or `slurm` in [conf/base.config](conf/base.config) for HPC.
 
 ## Dependencies
 
