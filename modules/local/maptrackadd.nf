@@ -1,3 +1,5 @@
+// LEGACY — superseded by MAPTRACK with a parameterized channel.
+// Kept for reference; not used in any active workflow.
 process MAPTRACKADD {
     label 'process_medium'
 

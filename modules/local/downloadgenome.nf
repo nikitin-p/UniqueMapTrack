@@ -1,22 +1,31 @@
 process DOWNLOADGENOME {
-    label 'process_medium'
+    label 'process_low'
 
     container 'sviatsidorov/uniqmaptrack:1.1'
 
+    input:
+    tuple val(name), val(url)
+
     output:
-    tuple path("t2t-chm13-v1.1.fa"), path("t2t-chm13-v1.1.fa.fai"), emit: t2t
+    tuple val(name), path("${name}.fa"), path("${name}.fa.fai"), emit: genome
     path "versions.yml", emit: versions
 
+    script:
+    def is_gz = url.endsWith('.gz')
     """
-    wget https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/genome/t2t-chm13-v1.1.fa.gz && \
-    gzip -d -c t2t-chm13-v1.1.fa.gz > t2t-chm13-v1.1.fa
-    
-    wget https://t2t.gi.ucsc.edu/chm13/hub/t2t-chm13-v1.1/genome/t2t-chm13-v1.1.fa.gz.fai && \
-    mv t2t-chm13-v1.1.fa.gz.fai t2t-chm13-v1.1.fa.fai
+    if ${is_gz}; then
+        wget -O genome.fa.gz '${url}'
+        gzip -d -c genome.fa.gz > ${name}.fa
+    else
+        wget -O ${name}.fa '${url}'
+    fi
+
+    samtools faidx ${name}.fa -o ${name}.fa.fai
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
         wget: \$(wget --version | head -1)
+        samtools: \$(echo \$(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*\$//')
     END_VERSIONS
     """
 }

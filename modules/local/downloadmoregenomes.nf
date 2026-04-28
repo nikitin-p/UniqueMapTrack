@@ -1,3 +1,5 @@
+// LEGACY — superseded by DOWNLOADGENOME with parameterized input channel.
+// Kept for reference; not used in any active workflow.
 process DOWNLOADMOREGENOMES {
     label 'process_low'
     
