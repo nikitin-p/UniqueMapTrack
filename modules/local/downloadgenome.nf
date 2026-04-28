@@ -3,6 +3,8 @@ process DOWNLOADGENOME {
 
     container 'sviatsidorov/uniqmaptrack:1.1'
 
+    publishDir { "${params.outdir}/genome/${name}" }, mode: params.publish_dir_mode, saveAs: { it == 'versions.yml' ? null : it }
+
     input:
     tuple val(name), val(url)
 

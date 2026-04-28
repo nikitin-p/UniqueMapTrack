@@ -3,6 +3,8 @@ process MAPTRACK {
 
     container 'sviatsidorov/uniqmaptrack:1.1'
 
+    publishDir { "${params.outdir}/wig_track/${name}" }, mode: params.publish_dir_mode, saveAs: { it == 'versions.yml' ? null : it }
+
     input:
     tuple val(name), path(fasta), path(fai)
 
