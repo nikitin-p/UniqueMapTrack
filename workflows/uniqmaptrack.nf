@@ -1,5 +1,7 @@
 include { DOWNLOADGENOME } from '../modules/local/downloadgenome.nf'
 include { MAPTRACK       } from '../modules/local/maptrack.nf'
+include { SPECTRALPLOT   } from '../modules/local/spectralplot.nf'
+include { SPECTRALPLOTR  } from '../modules/local/spectralplotr.nf'
 
 workflow UNIQMAPTRACK {
 
@@ -35,5 +37,22 @@ workflow UNIQMAPTRACK {
     DOWNLOADGENOME(ch_genomes)
 
     MAPTRACK(DOWNLOADGENOME.out.genome)
+
+    // Join mul and mur outputs by name for spectral analysis
+    ch_wig = MAPTRACK.out.mul
+        .join(MAPTRACK.out.mur)
+        .map { name, mul, mur -> tuple(name, mul, mur) }
+
+    SPECTRALPLOT(ch_wig)
+
+    // Collect all spectral outputs and produce combined PDF
+    ch_spectral_files = SPECTRALPLOT.out.binned
+        .map { name, mul_tsv, mur_tsv -> [mul_tsv, mur_tsv] }
+        .mix(SPECTRALPLOT.out.raw.map { name, mul_raw, mur_raw -> [mul_raw, mur_raw] })
+        .mix(SPECTRALPLOT.out.max.map { name, mul_max, mur_max -> [mul_max, mur_max] })
+        .flatten()
+        .collect()
+
+    SPECTRALPLOTR(ch_spectral_files)
 
 }

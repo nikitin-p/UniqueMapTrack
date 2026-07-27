@@ -19,6 +19,8 @@ The core computation runs inside `sviatsidorov/uniqmaptrack:1.1` (Singularity/Do
 
 1. `DOWNLOADGENOME` — downloads FASTA from a URL (handles `.gz` or plain), generates FAI via `samtools faidx`
 2. `MAPTRACK` — runs `find_minUniqueKmer.sh` on the FASTA; outputs `*.fa.{sa,refrev,mul.wig,mur.wig}`
+3. `SPECTRALPLOT` — bins k-mer lengths into spectral distributions (per genome)
+4. `SPECTRALPLOTR` — produces a combined stacked bar plot PDF (all genomes)
 
 ## Usage
 
@@ -52,10 +54,17 @@ All results land in `results/`:
 
 - `results/genome/{name}/` — downloaded reference FASTA + FAI
 - `results/wig_track/{name}/` — WIG mappability tracks and intermediate files
+- `results/spectral/{name}/` — spectral TSVs (binned counts, raw histograms, max values)
+- `results/spectral/spectral_plot.pdf` — combined stacked bar plot (all genomes)
 - `results/pipeline_info/` — execution timeline, report, trace, DAG
 
 ## Dependencies
 
 - Nextflow ≥ 21.04.0
 - Singularity (or Docker/Podman) for container execution
-- `sviatsidorov/uniqmaptrack:1.1` — core computation container
+
+**Containers** (pulled automatically):
+
+- `sviatsidorov/uniqmaptrack:1.1` — k-mer computation
+- `nikitinpavel/python_bedtools_machine:latest` — spectral analysis (Python)
+- `sviatsidorov/r_machine:1.1` — plotting (R/ggplot2)
